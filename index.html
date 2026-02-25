@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PRIVATE DEMOS_2003.EXE</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background: black;
+      color: #00ff99;
+      font-family: 'Press Start 2P', cursive;
+      text-align: center;
+      padding: 40px;
+      text-shadow: 0 0 5px #00ff99;
+    }
+
+    h1 {
+      animation: blink 1s infinite;
+      font-size: 18px;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0.4; }
+    }
+
+    .box {
+      border: 3px solid #00ff99;
+      padding: 30px;
+      margin-top: 40px;
+      display: inline-block;
+      width: 80%;
+      max-width: 600px;
+    }
+
+    input {
+      background: black;
+      border: 2px solid #00ff99;
+      color: #00ff99;
+      padding: 10px;
+      font-family: 'Press Start 2P';
+      margin-top: 20px;
+    }
+
+    button {
+      background: #00ff99;
+      border: none;
+      padding: 10px 20px;
+      font-family: 'Press Start 2P';
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    button:hover {
+      background: #ff00cc;
+      color: black;
+    }
+
+    #content {
+      display: none;
+      margin-top: 30px;
+    }
+
+    audio {
+      margin-top: 15px;
+      width: 100%;
+    }
+
+    .footer {
+      margin-top: 50px;
+      font-size: 10px;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>> ENTER ACCESS CODE</h1>
+
+  <div class="box">
+    <p>AUTHORIZED USERS ONLY</p>
+
+    <input type="password" id="password" placeholder="PASSWORD">
+    <button onclick="checkPassword()">ENTER</button>
+
+    <div id="content">
+      <h2>> UNRELEASED_DEMOS</h2>
+
+      <p>Good_Luck_Madeleine.MP3</p>
+      <audio controls>
+        <source src="demo1.mp3" type="audio/mpeg">
+      </audio>
+
+      <p>Restart.MP3</p>
+      <audio controls>
+        <source src="demo2.mp3" type="audio/mpeg">
+      </audio>
+
+      <p style="margin-top:30px;">>> DO NOT DISTRIBUTE</p>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2003 // PRIVATE SERVER NODE
+  </div>
+
+  <script>
+    function checkPassword() {
+      var password = document.getElementById("password").value;
+
+      if (password === "madeleine") {   // <-- CHANGE THIS TO YOUR PASSWORD
+        document.getElementById("content").style.display = "block";
+      } else {
+        alert("ACCESS DENIED");
+      }
+    }
+  </script>
+
+</body>
+</html> 
