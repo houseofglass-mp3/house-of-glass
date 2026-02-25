@@ -2,32 +2,51 @@
 <html>
 <head>
   <title>PRIVATE DEMOS_2003.EXE</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-
   <style>
     body {
+      margin: 0;
       background: black;
       color: #00ff99;
       font-family: 'Press Start 2P', cursive;
       text-align: center;
-      padding: 40px;
       text-shadow: 0 0 5px #00ff99;
     }
 
+    @keyframes blink { 50% { opacity: 0.4; } }
+
     h1 {
-      animation: blink 1s infinite;
       font-size: 18px;
+      animation: blink 1s infinite;
+      margin-top: 60px;
     }
 
-    @keyframes blink {
-      50% { opacity: 0.4; }
+    /* Loading screen */
+    #loading-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: black;
+      color: #00ff99;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 12px;
+      z-index: 9999;
+      text-shadow: 0 0 5px #00ff99;
     }
 
+    #loading-screen p {
+      margin: 5px 0;
+      animation: blink 1s infinite;
+    }
+
+    /* Password box */
     .box {
       border: 3px solid #00ff99;
       padding: 30px;
-      margin-top: 40px;
+      margin: 40px auto;
       display: inline-block;
       width: 80%;
       max-width: 600px;
@@ -38,7 +57,7 @@
       border: 2px solid #00ff99;
       color: #00ff99;
       padding: 10px;
-      font-family: 'Press Start 2P';
+      font-family: 'Press Start 2P', cursive;
       margin-top: 20px;
     }
 
@@ -46,7 +65,7 @@
       background: #00ff99;
       border: none;
       padding: 10px 20px;
-      font-family: 'Press Start 2P';
+      font-family: 'Press Start 2P', cursive;
       cursor: pointer;
       margin-left: 10px;
     }
@@ -75,6 +94,14 @@
 </head>
 
 <body>
+
+  <!-- Loading screen -->
+  <div id="loading-screen">
+    <p>> CONNECTING TO PRIVATE SERVER...</p>
+    <p>> INITIALIZING AUDIO STREAM...</p>
+    <p>> AUTHENTICATING...</p>
+    <p>> LOADING TRACK LIST...</p>
+  </div>
 
   <h1>> ENTER ACCESS CODE</h1>
 
@@ -106,10 +133,17 @@
   </div>
 
   <script>
+    // Hide loading screen after 3 seconds
+    window.addEventListener("load", function() {
+      setTimeout(function() {
+        document.getElementById("loading-screen").style.display = "none";
+      }, 3000);
+    });
+
+    // Password protection
     function checkPassword() {
       var password = document.getElementById("password").value;
-
-      if (password === "madeleine") {   // <-- CHANGE THIS TO YOUR PASSWORD
+      if (password === "madeleine") {   // <-- PASSWORD SET HERE
         document.getElementById("content").style.display = "block";
       } else {
         alert("ACCESS DENIED");
@@ -118,4 +152,4 @@
   </script>
 
 </body>
-</html> 
+</html>
