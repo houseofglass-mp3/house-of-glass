@@ -1,160 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PRIVATE DEMOS_2003.EXE</title>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <title>Good Luck Madeleine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    body, html {
       margin: 0;
-      background: black;
-      color: #00ff99;
-      font-family: 'Press Start 2P', cursive;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Press Start 2P', monospace; /* pixel font */
+      background: white;
+      color: black;
       text-align: center;
-      text-shadow: 0 0 5px #00ff99;
     }
 
-    @keyframes blink { 50% { opacity: 0.4; } }
-
-    h1 {
-      font-size: 18px;
-      animation: blink 1s infinite;
-      margin-top: 60px;
-    }
-
-    /* Loading screen */
-    #loading-screen {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: black;
-      color: #00ff99;
+    #landing {
+      position: absolute;
+      width: 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-size: 12px;
-      z-index: 9999;
-      text-shadow: 0 0 5px #00ff99;
     }
 
-    #loading-screen p {
-      margin: 5px 0;
-      animation: blink 1s infinite;
+    #landing video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
     }
 
-    /* Password box */
-    .box {
-      border: 3px solid #00ff99;
-      padding: 30px;
-      margin: 40px auto;
-      display: inline-block;
-      width: 80%;
-      max-width: 600px;
-    }
-
-    input {
-      background: black;
-      border: 2px solid #00ff99;
-      color: #00ff99;
-      padding: 10px;
-      font-family: 'Press Start 2P', cursive;
-      margin-top: 20px;
-    }
-
-    button {
-      background: #00ff99;
-      border: none;
-      padding: 10px 20px;
-      font-family: 'Press Start 2P', cursive;
+    #enterBtn {
+      font-size: 20px;
+      padding: 20px 50px;
       cursor: pointer;
-      margin-left: 10px;
-    }
-
-    button:hover {
-      background: #ff00cc;
+      border: 3px solid black;
+      background: white;
       color: black;
     }
 
-    #content {
+    #mainContent {
       display: none;
-      margin-top: 30px;
+      padding-top: 50px;
     }
 
-    .footer {
-      margin-top: 50px;
-      font-size: 10px;
-      opacity: 0.6;
+    audio {
+      margin-top: 40px;
+      width: 80%;
+      max-width: 500px;
     }
 
-    iframe {
-      margin-top: 15px;
-      width: 100%;
-      max-width: 100%;
-      height: 120px;
-      border: none;
+    /* Optional retro hover effect */
+    #enterBtn:hover {
+      background: black;
+      color: white;
     }
   </style>
 </head>
-
 <body>
 
-  <!-- Loading screen -->
-  <div id="loading-screen">
-    <p>> CONNECTING TO PRIVATE SERVER...</p>
-    <p>> INITIALIZING AUDIO STREAM...</p>
-    <p>> AUTHENTICATING...</p>
-    <p>> LOADING TRACK LIST...</p>
-  </div>
+<div id="landing">
+  <video autoplay loop muted>
+    <source src="YOUR_VIDEO.mp4" type="video/mp4">
+  </video>
+  <button id="enterBtn">ENTER NOW</button>
+</div>
 
-  <h1>> ENTER ACCESS CODE</h1>
+<div id="mainContent">
+  <h1>Good Luck Madeleine</h1>
+  <audio controls>
+    <source src="https://drive.google.com/uc?export=download&id=1jUqO9_arO8nOiIeVMFgnMnFGqHwnDR7O" type="audio/mpeg">
+  </audio>
+</div>
 
-  <div class="box">
-    <p>AUTHORIZED USERS ONLY</p>
-
-    <input type="password" id="password" placeholder="PASSWORD">
-    <button onclick="checkPassword()">ENTER</button>
-
-    <div id="content">
-      <h2>> UNRELEASED_DEMOS</h2>
-
-      <!-- Track 1 -->
-      <p>TRACK 01</p>
-      <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2273392907%3Fsecret_token%3Ds-qJ1Ok6KvEYJ&color=%23ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&visual=true">
-      </iframe>
-
-      <!-- Track 2 -->
-      <p>TRACK 02</p>
-      <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay"
-      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2273393303%3Fsecret_token%3Ds-sXjx8ydbcDj&color=%23ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=true&show_reposts=false&visual=true">
-      </iframe>
-
-      <p style="margin-top:30px;">>> DO NOT DISTRIBUTE</p>
-    </div>
-  </div>
-
-  <div class="footer">
-    © 2003 // PRIVATE SERVER NODE
-  </div>
-
-  <script>
-    // Hide loading screen after 3 seconds
-    window.addEventListener("load", function() {
-      setTimeout(function() {
-        document.getElementById("loading-screen").style.display = "none";
-      }, 3000);
-    });
-
-    // Password protection
-    function checkPassword() {
-      var password = document.getElementById("password").value;
-      if (password === "madeleine") {
-        document.getElementById("content").style.display = "block";
-      } else {
-        alert("ACCESS DENIED");
-      }
+<script>
+  document.getElementById("enterBtn").onclick = function() {
+    var pwd = prompt("Enter access code:");
+    if (pwd === "madeleine") {
+      document.getElementById("landing").style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+    } else {
+      alert("Access denied.");
     }
-  </script>
+  };
+</script>
 
 </body>
 </html>
