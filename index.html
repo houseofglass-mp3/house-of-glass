@@ -5,13 +5,11 @@
 <title>house of glass</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&display=swap');
-
 body {
   margin: 0;
   background: black;
   color: white;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   overflow: hidden;
 }
 
@@ -25,7 +23,7 @@ video {
   z-index: -1;
 }
 
-/* Landing */
+/* LANDING */
 #landing {
   position: absolute;
   top: 50%;
@@ -35,20 +33,19 @@ video {
 }
 
 #landing h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   letter-spacing: 8px;
-  font-weight: 500;
+  margin-bottom: 30px;
 }
 
 .enter-btn {
-  margin-top: 25px;
-  padding: 8px 20px;
+  padding: 12px 28px;
   border: 1px solid white;
   background: transparent;
   color: white;
+  font-size: 1rem;
   letter-spacing: 3px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .enter-btn:hover {
@@ -56,7 +53,7 @@ video {
   color: black;
 }
 
-/* Password */
+/* PASSWORD */
 #passwordPage {
   display: none;
   position: absolute;
@@ -67,25 +64,25 @@ video {
 }
 
 #passwordInput {
-  padding: 10px 20px;
-  font-size: 1rem;
-  letter-spacing: 3px;
+  padding: 16px 26px;
+  font-size: 1.3rem;
+  letter-spacing: 4px;
   background: transparent;
   border: 1px solid white;
   color: white;
-  width: 240px;
+  width: 320px;
   text-align: center;
 }
 
 .submit-btn {
-  margin-top: 15px;
-  padding: 6px 18px;
+  margin-top: 22px;
+  padding: 12px 28px;
+  font-size: 1rem;
   border: 1px solid white;
   background: transparent;
   color: white;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .submit-btn:hover {
@@ -93,50 +90,49 @@ video {
   color: black;
 }
 
-/* Music Page */
+/* MUSIC */
 #musicPage {
   display: none;
   position: absolute;
-  bottom: 60px;
+  bottom: 80px;
   width: 100%;
   text-align: center;
 }
 
 #trackTitle {
-  font-size: 0.8rem;
+  font-size: 1rem;
   letter-spacing: 4px;
-  margin-bottom: 15px;
-  opacity: 0.8;
+  margin-bottom: 25px;
 }
 
-/* Custom Player */
 .player {
-  width: 300px;
+  width: 420px;
   margin: 0 auto;
 }
 
 #progress {
   width: 100%;
-  height: 2px;
+  height: 3px;
   background: white;
   cursor: pointer;
   position: relative;
 }
 
 #progressFilled {
-  height: 2px;
+  height: 3px;
   width: 0%;
   background: black;
 }
 
 .play-btn {
-  margin-top: 15px;
-  padding: 6px 16px;
+  margin-top: 25px;
+  padding: 12px 28px;
   border: 1px solid white;
   background: white;
   color: black;
+  font-size: 1rem;
+  letter-spacing: 3px;
   cursor: pointer;
-  letter-spacing: 2px;
 }
 </style>
 </head>
@@ -153,7 +149,7 @@ video {
 </div>
 
 <div id="passwordPage">
-  <input type="password" id="passwordInput" placeholder="password">
+  <input type="password" id="passwordInput" placeholder="PASSWORD">
   <br>
   <button class="submit-btn" onclick="checkPassword()">ENTER</button>
 </div>
@@ -168,8 +164,8 @@ video {
   </div>
 </div>
 
-<audio id="audio">
-  <source src="good_luck_madeleine.mp3" type="audio/mpeg">
+<audio id="audio" preload="auto">
+  <source src="GoodLuckMadeleine.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -179,8 +175,8 @@ function goToPassword() {
 }
 
 function checkPassword() {
-  var password = document.getElementById("passwordInput").value;
-  if(password === "houseofglass") {
+  var password = document.getElementById("passwordInput").value.trim().toLowerCase();
+  if (password === "madeleine") {
     document.getElementById("passwordPage").style.display = "none";
     document.getElementById("musicPage").style.display = "block";
   } else {
@@ -193,7 +189,7 @@ var playBtn = document.querySelector(".play-btn");
 var progressFilled = document.getElementById("progressFilled");
 
 function togglePlay() {
-  if(audio.paused) {
+  if (audio.paused) {
     audio.play();
     playBtn.textContent = "PAUSE";
   } else {
@@ -203,8 +199,10 @@ function togglePlay() {
 }
 
 audio.addEventListener("timeupdate", function() {
-  var percent = (audio.currentTime / audio.duration) * 100;
-  progressFilled.style.width = percent + "%";
+  if (audio.duration) {
+    var percent = (audio.currentTime / audio.duration) * 100;
+    progressFilled.style.width = percent + "%";
+  }
 });
 
 function seek(e) {
