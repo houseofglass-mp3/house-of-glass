@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>good luck madeleine</title>
+  <title>house of glass</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -15,9 +15,10 @@
       background: white;
       color: black;
       overflow: hidden;
+      text-align: center;
     }
 
-    /* Landing page with video */
+    /* Landing page video + overlay */
     #landing {
       position: absolute;
       width: 100%;
@@ -38,11 +39,34 @@
       z-index: -1;
     }
 
+    #landingText {
+      font-size: 40px;
+      color: black;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px white; /* optional retro style */
+    }
+
+    #enterBtn {
+      font-size: 20px;
+      padding: 20px 50px;
+      cursor: pointer;
+      border: 3px solid black;
+      background: white;
+      color: black;
+    }
+
+    #enterBtn:hover {
+      background: black;
+      color: white;
+    }
+
+    /* Password container (appears after clicking ENTER) */
     #passwordContainer {
+      display: none;
       background: white;
       border: 3px solid black;
-      padding: 30px;
-      text-align: center;
+      padding: 20px;
+      margin-top: 20px;
     }
 
     #passwordInput {
@@ -50,7 +74,6 @@
       font-size: 14px;
       padding: 10px;
       width: 200px;
-      margin-top: 10px;
       border: 2px solid black;
       background: white;
       color: black;
@@ -60,7 +83,7 @@
       font-family: 'Press Start 2P', monospace;
       font-size: 14px;
       padding: 10px 20px;
-      margin-top: 15px;
+      margin-top: 10px;
       border: 2px solid black;
       background: white;
       cursor: pointer;
@@ -71,14 +94,10 @@
       color: white;
     }
 
-    /* Main content after password */
+    /* Main content */
     #mainContent {
       display: none;
-      width: 100%;
-      height: 100%;
-      text-align: center;
       padding-top: 50px;
-      background: white;
     }
 
     audio {
@@ -90,11 +109,15 @@
 </head>
 <body>
 
-<!-- Landing with video + password form -->
+<!-- Landing page -->
 <div id="landing">
   <video autoplay loop muted>
     <source src="landing.mp4" type="video/mp4">
   </video>
+  <div id="landingText">house of glass</div>
+  <button id="enterBtn">ENTER NOW</button>
+
+  <!-- Password form -->
   <div id="passwordContainer">
     <p>enter password</p>
     <input type="password" id="passwordInput" placeholder="password">
@@ -103,7 +126,7 @@
   </div>
 </div>
 
-<!-- Main content with track -->
+<!-- Main content after correct password -->
 <div id="mainContent">
   <h1>good luck madeleine</h1>
   <audio controls>
@@ -112,9 +135,18 @@
 </div>
 
 <script>
+  const enterBtn = document.getElementById('enterBtn');
+  const passwordContainer = document.getElementById('passwordContainer');
   const submitBtn = document.getElementById('submitBtn');
   const passwordInput = document.getElementById('passwordInput');
 
+  // Show password input after clicking ENTER NOW
+  enterBtn.addEventListener('click', () => {
+    passwordContainer.style.display = 'block';
+    enterBtn.style.display = 'none';
+  });
+
+  // Check password
   submitBtn.addEventListener('click', () => {
     const pwd = passwordInput.value.trim().toLowerCase();
     if(pwd === 'madeleine') {
@@ -126,11 +158,9 @@
     }
   });
 
-  // Optional: submit with Enter key
+  // Optional: Enter key submits
   passwordInput.addEventListener('keypress', (e) => {
-    if(e.key === 'Enter'){
-      submitBtn.click();
-    }
+    if(e.key === 'Enter') submitBtn.click();
   });
 </script>
 
