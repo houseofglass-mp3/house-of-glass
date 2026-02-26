@@ -18,7 +18,7 @@
       text-align: center;
     }
 
-    /* Landing page video + overlay */
+    /* Landing page */
     #landing {
       position: absolute;
       width: 100%;
@@ -27,7 +27,6 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
     }
 
     #landing video {
@@ -42,17 +41,18 @@
     #landingText {
       font-size: 40px;
       color: black;
-      margin-bottom: 30px;
-      text-shadow: 2px 2px white; /* optional retro style */
+      margin-bottom: 20px;
+      text-shadow: 2px 2px white;
     }
 
     #enterBtn {
-      font-size: 20px;
-      padding: 20px 50px;
+      font-size: 16px;
+      padding: 12px 30px;
       cursor: pointer;
-      border: 3px solid black;
+      border: 2px solid black;
       background: white;
       color: black;
+      transition: all 0.2s ease;
     }
 
     #enterBtn:hover {
@@ -60,20 +60,20 @@
       color: white;
     }
 
-    /* Password container (appears after clicking ENTER) */
+    /* Password container */
     #passwordContainer {
       display: none;
       background: white;
-      border: 3px solid black;
-      padding: 20px;
-      margin-top: 20px;
+      border: 2px solid black;
+      padding: 15px;
+      margin-top: 15px;
     }
 
     #passwordInput {
       font-family: 'Press Start 2P', monospace;
-      font-size: 14px;
-      padding: 10px;
-      width: 200px;
+      font-size: 12px;
+      padding: 8px;
+      width: 180px;
       border: 2px solid black;
       background: white;
       color: black;
@@ -81,9 +81,9 @@
 
     #submitBtn {
       font-family: 'Press Start 2P', monospace;
-      font-size: 14px;
-      padding: 10px 20px;
-      margin-top: 10px;
+      font-size: 12px;
+      padding: 8px 16px;
+      margin-top: 8px;
       border: 2px solid black;
       background: white;
       cursor: pointer;
@@ -100,11 +100,19 @@
       padding-top: 50px;
     }
 
-    audio {
-      margin-top: 40px;
+    #trackTitle {
+      font-size: 12px;
+      margin-bottom: 10px;
+      text-transform: lowercase;
+    }
+
+    iframe {
       width: 80%;
       max-width: 500px;
+      height: 80px; /* compact player */
+      border: none;
     }
+
   </style>
 </head>
 <body>
@@ -112,7 +120,7 @@
 <!-- Landing page -->
 <div id="landing">
   <video autoplay loop muted>
-    <source src="1 (online-video-cutter.com).mp4" type="video/mp4">
+    <source src="landing.mp4" type="video/mp4">
   </video>
   <div id="landingText">house of glass</div>
   <button id="enterBtn">ENTER NOW</button>
@@ -126,12 +134,10 @@
   </div>
 </div>
 
-<!-- Main content after correct password -->
+<!-- Main content -->
 <div id="mainContent">
-  <h1>good luck madeleine</h1>
-  <audio controls>
-    <source src="https://drive.google.com/uc?export=download&id=1jUqO9_arO8nOiIeVMFgnMnFGqHwnDR7O" type="audio/mpeg">
-  </audio>
+  <div id="trackTitle">good luck madeleine</div>
+  <iframe src="https://drive.google.com/file/d/1jUqO9_arO8nOiIeVMFgnMnFGqHwnDR7O/preview"></iframe>
 </div>
 
 <script>
@@ -158,7 +164,7 @@
     }
   });
 
-  // Optional: Enter key submits
+  // Submit with Enter key
   passwordInput.addEventListener('keypress', (e) => {
     if(e.key === 'Enter') submitBtn.click();
   });
