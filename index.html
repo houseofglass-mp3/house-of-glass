@@ -1,173 +1,169 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>house of glass</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+<meta charset="UTF-8">
+<title>house of glass</title>
 
-    body, html {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      font-family: 'Press Start 2P', monospace;
-      background: white;
-      color: black;
-      overflow: hidden;
-      text-align: center;
-    }
+<style>
+body {
+  margin: 0;
+  background: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
 
-    /* Landing page */
-    #landing {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
+video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
 
-    #landing video {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
+/* Landing Page */
+#landing {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
 
-    #landingText {
-      font-size: 40px;
-      color: black;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px white;
-    }
+#landing h1 {
+  font-size: 3rem;
+  letter-spacing: 6px;
+  margin-bottom: 25px;
+}
 
-    #enterBtn {
-      font-size: 16px;
-      padding: 12px 30px;
-      cursor: pointer;
-      border: 2px solid black;
-      background: white;
-      color: black;
-      transition: all 0.2s ease;
-    }
+.enter-btn {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 8px 20px;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
 
-    #enterBtn:hover {
-      background: black;
-      color: white;
-    }
+.enter-btn:hover {
+  background: white;
+  color: black;
+}
 
-    /* Password container */
-    #passwordContainer {
-      display: none;
-      background: white;
-      border: 2px solid black;
-      padding: 15px;
-      margin-top: 15px;
-    }
+/* Password Page */
+#passwordPage {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
 
-    #passwordInput {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 12px;
-      padding: 8px;
-      width: 180px;
-      border: 2px solid black;
-      background: white;
-      color: black;
-    }
+input {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 8px;
+  text-align: center;
+  letter-spacing: 2px;
+  outline: none;
+}
 
-    #submitBtn {
-      font-family: 'Press Start 2P', monospace;
-      font-size: 12px;
-      padding: 8px 16px;
-      margin-top: 8px;
-      border: 2px solid black;
-      background: white;
-      cursor: pointer;
-    }
+.submit-btn {
+  margin-top: 15px;
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 6px 16px;
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
 
-    #submitBtn:hover {
-      background: black;
-      color: white;
-    }
+.submit-btn:hover {
+  background: white;
+  color: black;
+}
 
-    /* Main content */
-    #mainContent {
-      display: none;
-      padding-top: 50px;
-    }
+/* Music Page */
+#musicPage {
+  display: none;
+  position: absolute;
+  bottom: 50px;
+  width: 100%;
+  text-align: center;
+}
 
-    #trackTitle {
-      font-size: 12px;
-      margin-bottom: 10px;
-      text-transform: lowercase;
-    }
+#trackTitle {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  opacity: 0.7;
+}
 
-    iframe {
-      width: 80%;
-      max-width: 500px;
-      height: 80px; /* compact player */
-      border: none;
-    }
-
-  </style>
+.player-wrapper {
+  width: 300px;
+  margin: 0 auto;
+}
+</style>
 </head>
+
 <body>
 
-<!-- Landing page -->
-<div id="landing">
-  <video autoplay loop muted>
-    <source src="landing.mp4" type="video/mp4">
-  </video>
-  <div id="landingText">house of glass</div>
-  <button id="enterBtn">ENTER NOW</button>
+<!-- Background Video -->
+<video autoplay loop muted playsinline>
+  <source src="landing.mp4" type="video/mp4">
+</video>
 
-  <!-- Password form -->
-  <div id="passwordContainer">
-    <p>enter password</p>
-    <input type="password" id="passwordInput" placeholder="password">
-    <br>
-    <button id="submitBtn">submit</button>
+<!-- Landing Page -->
+<div id="landing">
+  <h1>HOUSE OF GLASS</h1>
+  <button class="enter-btn" onclick="goToPassword()">ENTER NOW</button>
+</div>
+
+<!-- Password Page -->
+<div id="passwordPage">
+  <input type="password" id="passwordInput" placeholder="password">
+  <br>
+  <button class="submit-btn" onclick="checkPassword()">ENTER</button>
+</div>
+
+<!-- Music Page -->
+<div id="musicPage">
+  <div id="trackTitle">good luck madeleine</div>
+  <div class="player-wrapper">
+    <iframe 
+      width="100%" 
+      height="20" 
+      scrolling="no" 
+      frameborder="no" 
+      allow="autoplay"
+      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2273392907%3Fsecret_token%3Ds-qJ1Ok6KvEYJ&color=%23292424&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false">
+    </iframe>
   </div>
 </div>
 
-<!-- Main content -->
-<div id="mainContent">
-  <div id="trackTitle">good luck madeleine</div>
-  <iframe src="https://drive.google.com/file/d/1jUqO9_arO8nOiIeVMFgnMnFGqHwnDR7O/preview"></iframe>
-</div>
-
 <script>
-  const enterBtn = document.getElementById('enterBtn');
-  const passwordContainer = document.getElementById('passwordContainer');
-  const submitBtn = document.getElementById('submitBtn');
-  const passwordInput = document.getElementById('passwordInput');
+function goToPassword() {
+  document.getElementById("landing").style.display = "none";
+  document.getElementById("passwordPage").style.display = "block";
+}
 
-  // Show password input after clicking ENTER NOW
-  enterBtn.addEventListener('click', () => {
-    passwordContainer.style.display = 'block';
-    enterBtn.style.display = 'none';
-  });
-
-  // Check password
-  submitBtn.addEventListener('click', () => {
-    const pwd = passwordInput.value.trim().toLowerCase();
-    if(pwd === 'madeleine') {
-      document.getElementById('landing').style.display = 'none';
-      document.getElementById('mainContent').style.display = 'block';
-    } else {
-      alert('access denied');
-      passwordInput.value = '';
-    }
-  });
-
-  // Submit with Enter key
-  passwordInput.addEventListener('keypress', (e) => {
-    if(e.key === 'Enter') submitBtn.click();
-  });
+function checkPassword() {
+  var password = document.getElementById("passwordInput").value;
+  if(password === "houseofglass") {   // CHANGE PASSWORD HERE
+    document.getElementById("passwordPage").style.display = "none";
+    document.getElementById("musicPage").style.display = "block";
+  } else {
+    alert("wrong password");
+  }
+}
 </script>
 
 </body>
